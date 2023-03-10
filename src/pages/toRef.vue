@@ -27,11 +27,14 @@ const { x, y } = useMousePosition()
     fooRef: {{ fooRef }}
   </div>
 
-  <CustomInput v-model="fooRef" />
+  <CustomInput v-model="fooRef" label="输入框:" class="input-style" />
 
   当前鼠标的位置: {{ x }} - {{ y }}
 </template>
 
 <style scoped>
-
+:deep(.input-style){
+  background-color: bisque;
+  width: 200px;
+}
 </style>

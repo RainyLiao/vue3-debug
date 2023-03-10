@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
+const props = defineProps(['modelValue', 'label'])
 
-const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
+
+const attrs = useAttrs()
+
 const value = computed({
   get() {
     return props.modelValue
@@ -13,10 +16,22 @@ const value = computed({
 })
 </script>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
+
 <template>
-  <input v-model="value">
+  <div class="custom-input__container">
+    <span>{{ label }}</span>
+    <input v-model="value" v-bind="attrs">
+  </div>
 </template>
 
 <style scoped>
-
+.custom-input__container {
+  display: inline-block;
+  background-color: red;
+}
 </style>
